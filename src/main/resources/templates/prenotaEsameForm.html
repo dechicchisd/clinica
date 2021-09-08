@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='SIW')"></head>
+
+<body id="add-tipo">
+	<form th:action="@{/prenotaEsame}" method="POST">
+		<div class="form-line titolo-form" th:text="#{esameForm.title}"></div>
+		
+		<div class="form-line">
+			<label for="nome" th:text="#{tipoForm.nome}">Tipo Esame: </label>
+			<select id="nome" name="tipoID">
+				<option value="">-- Selezione tipologia di esame --</option>
+				<option th:each="t : *{tipologie}"
+					    th:value="${t.id}"
+					    th:text="|${t.nome} ${t.prezzo} euro|"></option>
+			</select>
+		</div>
+
+		<div class="form-line" th:field="${esame.data}">
+			<label for="data">Data: </label>
+			<input id="data" type="date"></input>
+		</div>
+		
+
+		<div class="form-line">
+			<input type="submit" value="Prenota"></button>
+		</div>
+	
+	</form>
+</body>
+</html>
