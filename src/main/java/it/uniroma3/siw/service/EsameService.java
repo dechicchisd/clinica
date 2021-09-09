@@ -15,7 +15,7 @@ public class EsameService {
 	private EsameRepository esameRepository;
 	
 	@Transactional
-	private Esame inserisci(Esame esame) {
+	public Esame inserisci(Esame esame) {
 		return (Esame) this.esameRepository.save(esame);
 	}
 }

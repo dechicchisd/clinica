@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/base.html :: headerfiles(title='SIW')"></head>
 
-<body id="add-tipo">
+<body class="add-form">
 	<form th:action="@{/addTipo}" th:object="${tipo}" method="POST">
 		<div class="form-line titolo-form" th:text="#{tipoForm.title}">TITOLO</div>
 		<div class="form-line">

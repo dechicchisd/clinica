@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.Data;
 
 @Data
@@ -20,8 +22,9 @@ public class Esame {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
-	private LocalDateTime data;
+	private LocalDateTime dataPrenotazione;
 	
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate dataEsame;
 	
 	@ManyToOne
