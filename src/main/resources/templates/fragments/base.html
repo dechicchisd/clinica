@@ -9,7 +9,13 @@
 
 <body>
   	<header th:fragment="navbar(page)">
-		<div class="navbar">
+		
+		<div class="navbar" th:if="${session.credentials}">
+			<span id="logo"><a th:href="@{/}">MedCenter</a></span>
+		  	<span><a class="anchor-item" th:href="@{/logout}">Logout</a></span>
+		</div>
+
+		<div class="navbar" th:unless="${session.credentials}">
 			<span id="logo"><a th:href="@{/}">MedCenter</a></span>
 		  	<span><a class="anchor-item" th:href="@{/login}">Login</a></span>
 		</div>

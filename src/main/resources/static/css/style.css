@@ -18,7 +18,7 @@
 	font-size: 25px;
 }
 .navbar span{
-	margin: 10px 20px 10px 20px;
+	padding: 10px 20px 10px 20px;
 }
 
 .navbar a:visited{
@@ -27,8 +27,16 @@
 
 body{
 	background-color: #bdd6ff;
-	height: 100vh;
+	height: 93vh;
 }
+
+main{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
 .add-form{
 	min-height: 120vh;
 	display: flex;
@@ -46,7 +54,7 @@ form{
 	padding-bottom: 10px;
 }
 
-input[type=text], input[type=date], select, textarea {
+input[type=text], input[type=date], input[type=password], select, textarea {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;

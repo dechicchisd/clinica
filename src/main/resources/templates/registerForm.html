@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='SIW')"></head>
+
+<body>
+	<header th:replace="fragments/base.html :: navbar(page='')"></header>
+	
+	<main>
+		<form th:action="@{/register}" method="POST">
+			<div class="form-line titolo-form" th:text="#{registration.title}">TITOLO</div>
+			
+			<div class="form-line">
+				<label for="nome" th:text="#{form.nome}">Nome: </label>
+				<input id="nome" type="text" th:field="${user.nome}">
+			</div>
+	
+			<div class="form-line">
+				<label for="cognome" th:text="#{form.cognome}">Cognome: </label>
+				<input id="cognome" type="text" th:field="${user.cognome}">
+			</div>
+			
+			<div class="form-line">
+				<label for="username" th:text="#{form.username}">Username: </label>
+				<input id="username" type="text" th:field=*{credentials.username}>	
+			</div>
+			
+			<div class="form-line">
+				<label for="password" th:text="#{form.password}">Password: </label>
+				<input id="password" type="password" th:field=${credentials.password}>	
+			</div>
+			
+			<div class="form-line">
+				<input type="submit" value="Registrati"></button>
+			</div>
+		</form>
+	</main>
+</body>
+</html>
