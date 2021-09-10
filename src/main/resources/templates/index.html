@@ -3,10 +3,12 @@
 <head th:replace="fragments/base.html :: headerfiles(title='SIW')"></head>
 
 <body>
+	<header th:replace="fragments/base.html :: navbar(page='artisti')"></header>
 	<ul> 
 		<li><a th:href="@{/prenotaEsameForm}">Prenota esame</a></li>
 		<li><a th:href="@{/addTipoForm}">Aggiungi tipologia esame</a></li>
 		<li><a th:href="@{/addMedico}">Aggiungi Medico</a></li>
+		<li><a th:href="@{/getHome}">HOME</a></li>
 	</ul>
 </body>
 </html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='SIW')"></head>
+
+<body>
+	<header th:replace="fragments/base.html :: navbar(page='artisti')"></header>
+	
+	<div id="home" class="background">
+		<div class="button">
+			<a th:href="@{/visualizzaTipologie}" th:text="#{home.visualizza}">VISUALIZZA TIPOLOGIE DI ESAMI</a>
+		</div>
+	</div>
+</body>
+</html>

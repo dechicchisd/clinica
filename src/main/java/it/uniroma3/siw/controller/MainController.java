@@ -13,4 +13,11 @@ public class MainController {
 		return "index.html";
 	}
 
+	@RequestMapping(value="/getHome", method=RequestMethod.GET)
+	public String getHome(Model model) {
+		return "home";
+	}
+	
+	
+
 }

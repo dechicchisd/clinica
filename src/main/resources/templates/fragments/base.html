@@ -8,6 +8,11 @@
 </head>
 
 <body>
-  	
+  	<header th:fragment="navbar(page)">
+		<div class="navbar">
+			<span id="logo"><a th:href="@{/}">MedCenter</a></span>
+		  	<span><a class="anchor-item" th:href="@{/login}">Login</a></span>
+		</div>
+  	</header>
 </body>
 </html>

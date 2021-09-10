@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='SIW')"></head>
+
+<body>
+	<header th:replace="fragments/base.html :: navbar(page='artisti')"></header>
+	<div class="center-container">
+		<div class="white-container">
+			<span class="titolo">TIPOLOGIE DI ESAMI</span>
+			<ul class="lista">
+				<li th:each = "t : ${tipologie}"><a th:href="@{/getTipoEsame/{id} (id=${t.id})}" th:text="${t.nome}"></a></li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

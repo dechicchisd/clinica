@@ -1,3 +1,34 @@
+*{
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+.navbar{
+	display: flex;
+	justify-content: space-between;
+	box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;
+	background-color: white;
+	border-bottom: 1px solid #c2c2c2;
+}
+
+.navbar a{
+	display: block;
+	text-decoration: none;
+	font-size: 25px;
+}
+.navbar span{
+	margin: 10px 20px 10px 20px;
+}
+
+.navbar a:visited{
+	color: blue;
+}
+
+body{
+	background-color: #bdd6ff;
+	height: 100vh;
+}
 .add-form{
 	min-height: 120vh;
 	display: flex;
@@ -45,3 +76,100 @@ input[type=submit]:hover {
   background-color: #f2f2f2;
   padding: 20px;
 }
+
+#home{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+.button{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: white;
+	box-shadow: rgba(100, 100, 111, 0.4) 0px 7px 29px 0px;
+	border-radius: 3px;
+	border: 1px solid #c2c2c2;
+}
+
+.button a{
+	display: block;
+	width: 100%;
+	height: 100%;
+	padding: 10px;
+	text-decoration: none;
+}
+.button a{
+	color: blue;
+}
+
+.center-container{
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.white-container{
+	background-color: white;
+	padding: 40px 100px 40px 100px;
+	box-shadow: rgba(100, 100, 111, 0.4) 0px 7px 29px 0px;
+	max-width: 70%;
+
+}
+
+.white-container table{
+	border-collapse: collapse;
+	font-size: 16px;
+}
+
+.white-container td{
+		border: 1px solid black;
+		padding: 20px;
+}
+
+.lista{
+	list-style: none;
+}
+
+.lista li{
+	text-align: center;
+	padding: 8px;
+}
+
+.lista a{
+	text-decoration: none;
+	font-size: 20px;
+}
+
+ .lista a:visited{
+	color: blue;	
+}
+
+.titolo{
+	display: block;
+	margin-bottom: 30px;
+	font-size: 20px;
+}
+
+.info{
+	display: block;
+}
+
+#tipologia-container{
+	display: flex;
+	flex-direction: column;
+}
+
+#nome-tipo{
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: bold;
+	width: 100%;
+	display: block;
+	margin-bottom: 20px;
+	font-size: 25px;
+}
+
