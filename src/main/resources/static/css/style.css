@@ -80,9 +80,12 @@ input[type=submit]:hover {
 }
 
 .form-line {
-  border-radius: 5px;
-  background-color: #f2f2f2;
   padding: 20px;
+}
+
+.form-container{
+    border-radius: 3px;
+  	background-color: #f2f2f2;
 }
 
 #home{
@@ -92,10 +95,18 @@ input[type=submit]:hover {
 	height: 100vh;
 }
 
+#home > div{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	height: 60%;
+}
+
 .button{
+	text-align: center;
 	display: flex;
 	justify-content: center;
-	align-items: center;
+	align-items: flex-start; 	/*non so perche ma centra il testo del pulsante*/
 	background-color: white;
 	box-shadow: rgba(100, 100, 111, 0.4) 0px 7px 29px 0px;
 	border-radius: 3px;
@@ -125,6 +136,7 @@ input[type=submit]:hover {
 	padding: 40px 100px 40px 100px;
 	box-shadow: rgba(100, 100, 111, 0.4) 0px 7px 29px 0px;
 	max-width: 70%;
+	border-radius: 3px;
 
 }
 

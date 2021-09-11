@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='SIW')"></head>
+
+<body class="add-form">
+	<div class="form-container">
+		<form th:action="@{/addMedico}" th:object="${medico}" method="POST">
+			<div class="form-line titolo-form" th:text="#{tipoForm.title}">TITOLO</div>
+			<div class="form-line">
+				<label for="nome" th:text="#{form.nome}">Nome: </label>
+				<input id="nome" type="text" th:field="*{nome}">
+				
+			</div>
+			<div class="form-line">
+				<label for="cognome" th:text="#{form.cognome}">Cognome: </label>
+				<input id="cognome" type="text" th:field="*{cognome}">
+				
+			</div>
+			<div class="form-line">
+				<label for="specializzazione" th:text="#{form.specializzazione}">Specializzazione: </label>
+				<input id="specializzazione" type="text" th:field=*{specializzazione}>
+				
+			</div>
+			
+			<div class="form-line">
+				<input type="submit" value="Inserisci"></button>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

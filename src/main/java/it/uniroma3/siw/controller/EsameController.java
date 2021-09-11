@@ -34,7 +34,7 @@ public class EsameController {
 		model.addAttribute("esame", new Esame());
 		model.addAttribute("tipologie", this.tipoService.tutti());
 		model.addAttribute("medici", this.medicoService.tutti());
-		return "prenotaEsameForm";
+		return "/admin/prenotaEsameForm";
 	}
 	
 	@RequestMapping(value="/prenotaEsame", method=RequestMethod.POST)

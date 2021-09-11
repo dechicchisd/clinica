@@ -22,7 +22,7 @@ public class TipoController {
 	public String getAddTipoForm(Model model) {
 		model.addAttribute("tipo", new Tipo());
 		
-		return "addTipoForm";
+		return "/admin/addTipoForm";
 	}
 
 	@RequestMapping(value="/addTipo", method=RequestMethod.POST)

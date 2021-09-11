@@ -6,26 +6,28 @@
 	<header th:replace="fragments/base.html :: navbar(page='')"></header>
 	
 	<main>
-		<form th:action="@{/login}" method="POST">
-			
-			<div class="form-line">
-				<label for="username" th:text="#{form.username}">Username: </label>
-				<input id="username" type="text" name="username">	
-			</div>
-	
-			<div class="form-line">
-				<label for="password" th:text="#{form.password}">Password: </label>
-				<input id="password" type="password" name="password">	
-			</div>
-			
-			<div class="form-line">
-				<input type="submit" value="LOGIN"></button>
-			</div>
-	
-			<div class="form-line">
-				<a th:href="@{/register}">Non ti sei ancora registrato? Registrati</a>
-			</div>
-		</form>
+		<div class="form-container">
+			<form th:action="@{/login}" method="POST">
+				
+				<div class="form-line">
+					<label for="username" th:text="#{form.username}">Username: </label>
+					<input id="username" type="text" name="username">	
+				</div>
+		
+				<div class="form-line">
+					<label for="password" th:text="#{form.password}">Password: </label>
+					<input id="password" type="password" name="password">	
+				</div>
+				
+				<div class="form-line">
+					<input type="submit" value="LOGIN"></button>
+				</div>
+		
+				<div class="form-line">
+					<a th:href="@{/register}">Non ti sei ancora registrato? Registrati</a>
+				</div>
+			</form>
+		</div>
 	</main>
 	
 </body>

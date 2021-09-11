@@ -6,8 +6,29 @@
 	<header th:replace="fragments/base.html :: navbar(page='artisti')"></header>
 	
 	<div id="home" class="background">
-		<div class="button">
-			<a th:href="@{/visualizzaTipologie}" th:text="#{home.visualizza}">VISUALIZZA TIPOLOGIE DI ESAMI</a>
+		
+		<div sec:authorize="!isAuthenticated()">
+			<div class="button">
+				<a th:href="@{/visualizzaTipologie}" th:text="#{home.visualizza}">VISUALIZZA</a>
+			</div>
+		</div>
+		
+		<div sec:authorize="isAuthenticated() and hasAuthority('DEFAULT')">
+			<div class="button">
+				<a th:href="@{/visualizzaTipologie}" th:text="#{home.visualizza}">VISUALIZZA</a>
+			</div>
+		</div>
+		
+		<div sec:authorize="isAuthenticated() and hasAuthority('ADMIN')">
+			<div class="button">
+				<a th:href="@{/visualizzaTipologie}" th:text="#{home.visualizza}">VISUALIZZA</a>
+			</div>
+			<div class="button">
+				<a th:href="@{/addTipoForm}" th:text="#{home.aggiungiTipo}">TIPO</a>
+			</div>
+			<div class="button">
+				<a th:href="@{/addMedico}" th:text="#{home.aggiungiMedico}">MEDICO</a>
+			</div>
 		</div>
 	</div>
 </body>

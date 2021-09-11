@@ -19,7 +19,7 @@ public class MedicoController {
 	@RequestMapping(value="/addMedico", method=RequestMethod.GET)
 	public String getAddMedicoForm(Model model) {
 		model.addAttribute("medico", new Medico());
-		return "addMedicoForm";
+		return "/admin/addMedicoForm";
 
 	}
 	
