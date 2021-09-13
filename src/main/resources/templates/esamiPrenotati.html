@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='SIW')"></head>
+
+<body>
+	<header th:replace="fragments/base.html :: navbar(page='artisti')"></header>
+	
+	<ul th:each="e : ${esami}">
+		<li th:text="${e.tipo.nome}"></li>
+	</ul>
+</body>
+</html>

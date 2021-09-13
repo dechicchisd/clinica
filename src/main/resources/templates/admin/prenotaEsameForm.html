@@ -27,6 +27,11 @@
 						    th:text="|${m.nome} ${m.cognome}|"></option>
 				</select>
 			</div>
+
+			<div class="form-line">
+				<label for="codice-paziente" th:text="#{form.paziente.codice}">Codice: </label>
+				<input id="codice-paziente" type="text" name="pazienteID">
+			</div>
 	
 			<div class="form-line">
 				<label for="data" th:text="#{form.data}">Data: </label>

@@ -30,10 +30,11 @@ public class Esame {
 	@ManyToOne
 	private Tipo tipo;
 	
-	@OneToOne
+	@ManyToOne
 	private Paziente paziente;
 	
 	@OneToOne
 	private Medico medico;
 	
+	private String risultati;
 }

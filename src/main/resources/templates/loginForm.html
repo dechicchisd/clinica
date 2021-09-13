@@ -9,6 +9,8 @@
 		<div class="form-container">
 			<form th:action="@{/login}" method="POST">
 				
+				<div class="form-line titolo-form" th:text="#{login.title}">TITOLO</div>
+
 				<div class="form-line">
 					<label for="username" th:text="#{form.username}">Username: </label>
 					<input id="username" type="text" name="username">	

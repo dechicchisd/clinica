@@ -12,12 +12,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.controller.validator.CredentialsValidator;
 import it.uniroma3.siw.controller.validator.UserValidator;
 import it.uniroma3.siw.model.Credentials;
+import it.uniroma3.siw.model.Paziente;
 import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.service.CredentialsService;
+import it.uniroma3.siw.service.PazienteService;
+import it.uniroma3.siw.service.UserService;
 
 @Controller
 public class AuthenticationController {
@@ -27,9 +31,15 @@ public class AuthenticationController {
 	
 	@Autowired
 	private UserValidator userValidator;
+
+	@Autowired
+	private UserService userService;
 	
 	@Autowired
 	private CredentialsValidator credentialsValidator;
+
+	@Autowired
+	private PazienteService pazienteService;
 	
 	
 	@RequestMapping(value = "/register", method = RequestMethod.GET) 
@@ -58,7 +68,7 @@ public class AuthenticationController {
     	session.setAttribute("credentials", credentials);
     	
 
-    	return "home.html";
+    	return "index";
     }
 	
     @RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -66,9 +76,16 @@ public class AuthenticationController {
                  BindingResult userBindingResult,
                  @ModelAttribute("credentials") Credentials credentials,
                  BindingResult credentialsBindingResult,
+                 @RequestParam("pazienteID") Long pazienteId,
                  Model model) {
 
-        // validate user and credentials fields
+    	Paziente paziente = this.pazienteService.pazientePerId(pazienteId);
+    	paziente.setUtente(user);
+    	if(pazienteId!=null) {
+    		System.out.println(paziente.getNome() + "\n\n\n\n\n");
+    		user.setPaziente(paziente);
+    	}
+    	// validate user and credentials fields
         this.userValidator.validate(user, userBindingResult);
         this.credentialsValidator.validate(credentials, credentialsBindingResult);
 
@@ -77,6 +94,9 @@ public class AuthenticationController {
             // set the user and store the credentials;
             // this also stores the User, thanks to Cascade.ALL policy
             credentials.setUser(user);
+            
+            pazienteService.inserisci(paziente);
+            userService.saveUser(user);
             credentialsService.saveCredentials(credentials);
             return "loginForm";
         }

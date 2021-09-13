@@ -21,6 +21,11 @@
 				</div>
 				
 				<div class="form-line">
+					<label for="paziente" th:text="#{form.paziente.id}">ID: </label>
+					<input id="paziente" type="text" name="pazienteID">
+				</div>
+				
+				<div class="form-line">
 					<label for="username" th:text="#{form.username}">Username: </label>
 					<input id="username" type="text" th:field=*{credentials.username}>	
 				</div>

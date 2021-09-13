@@ -26,7 +26,7 @@
 }
 
 body{
-	background-color: #bdd6ff;
+	background-color: #78d9ff;
 	height: 93vh;
 }
 
@@ -92,7 +92,7 @@ input[type=submit]:hover {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 100vh;
+	height: 93vh;
 }
 
 #home > div{
@@ -164,7 +164,7 @@ input[type=submit]:hover {
 	font-size: 20px;
 }
 
- .lista a:visited{
+ a:visited{
 	color: blue;	
 }
 

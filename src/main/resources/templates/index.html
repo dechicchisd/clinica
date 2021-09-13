@@ -4,11 +4,44 @@
 
 <body>
 	<header th:replace="fragments/base.html :: navbar(page='artisti')"></header>
-	<ul> 
-		<li><a th:href="@{/prenotaEsameForm}">Prenota esame</a></li>
-		<li><a th:href="@{/addTipoForm}">Aggiungi tipologia esame</a></li>
-		<li><a th:href="@{/addMedico}">Aggiungi Medico</a></li>
-		<li><a th:href="@{/getHome}">HOME</a></li>
-	</ul>
+	
+	<div id="home" class="background">
+		
+		<div sec:authorize="!isAuthenticated()">
+			<div class="button">
+				<a th:href="@{/visualizzaTipologie}" th:text="#{home.visualizza.tipi}">VISUALIZZA</a>
+			</div>
+		</div>
+		
+		<div sec:authorize="isAuthenticated() and hasAuthority('DEFAULT')">
+			<div class="button">
+				<a th:href="@{/visualizzaTipologie}" th:text="#{home.visualizza.tipi}">VISUALIZZA</a>
+			</div>
+			<div class="button">
+				<a th:href="@{/visualizzaEsamiPrenotati}" th:text="#{home.visualizza.esami}">VISUALIZZA</a>
+			</div>
+		</div>
+		
+		<div sec:authorize="isAuthenticated() and hasAuthority('ADMIN')">
+			<div class="button">
+				<a th:href="@{/visualizzaTipologie}" th:text="#{home.visualizza.tipi}">VISUALIZZA</a>
+			</div>
+			<div class="button">
+				<a th:href="@{/addTipoForm}" th:text="#{home.aggiungiTipo}">TIPO</a>
+			</div>
+			<div class="button">
+				<a th:href="@{/addMedico}" th:text="#{home.aggiungiMedico}">MEDICO</a>
+			</div>
+			<div class="button">
+				<a th:href="@{/cercaEsame}" th:text="#{home.aggiungiEsito}">ESITO</a>
+			</div>
+			<div class="button">
+				<a th:href="@{/addPaziente}" th:text="#{home.aggiungiPaziente}">PAZIENTE</a>
+			</div>
+			<div class="button">
+				<a th:href="@{/prenotaEsame}" th:text="#{home.prenotaEsame}">PRENOTA</a>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

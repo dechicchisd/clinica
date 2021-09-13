@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='SIW')"></head>
+
+<body class="add-form">
+	<div class="form-container">
+		<form th:action="@{/addEsito}">
+			<div class="form-line titolo-form" th:text="#{cercaEsame.title}">CERCA ESAME</div>
+			<div class="form-line">
+				<label for="nome" th:text="#{form.esame.codice}">Codice esame: </label>
+				<input id="nome" type="text" name="esameID">
+			</div>	
+			<div class="form-line">
+				<input type="submit" value="Cerca"></button>
+			</div>
+		</form>
+	</div>
+</body>
+</html>
