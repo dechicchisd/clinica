@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='SIW')"></head>
+
+<body>
+	<header th:replace="fragments/base.html :: navbar(page='artisti')"></header>
+	<div class="center-container" th:object="${esame}">
+		<div class="white-container">
+			<span id="nome-tipo" th:text="*{tipo.nome}"></span>
+			<table>			
+				<tr>
+					<td>Descrizione</td>
+					<td th:text="*{tipo.descrizione}"></td>
+				</tr>
+				<tr>
+					<td>Prezzo</td>
+					<td th:text="|*{tipo.prezzo} euro|"></td>
+				</tr>
+				<tr>
+					<td>Data di prenotazione</td>
+					<td th:text="*{dataPrenotazione}"></td>
+				</tr>
+				<tr>
+					<td>Data esame</td>
+					<td th:text="*{dataEsame}"></td>
+				</tr>
+				<tr th:each="entry : ${map}">
+					<td th:text="${entry.key}"></td>
+					<td th:text="${entry.value}"></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

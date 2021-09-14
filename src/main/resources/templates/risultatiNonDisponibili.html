@@ -6,10 +6,7 @@
 	<header th:replace="fragments/base.html :: navbar(page='artisti')"></header>
 	<div class="center-container">
 		<div class="white-container">
-			<span class="titolo" th:text="#{esami.title}">ESAMI</span>
-			<ul class="lista">
-				<li th:each = "e : ${esami}"><a th:href="@{/getEsame/{id} (id=${e.id})}" th:text="${e.tipo.nome}"></a></li>
-			</ul>
+			<p th:text="#{noRisultati}"></p>
 		</div>
 	</div>
 </body>

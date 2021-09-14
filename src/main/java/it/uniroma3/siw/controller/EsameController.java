@@ -1,7 +1,9 @@
 package it.uniroma3.siw.controller;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -111,6 +113,33 @@ public class EsameController {
 		model.addAttribute("esami", esamiPrenotati);
 		
 		return "esamiPrenotati";
+	}
+
+	@RequestMapping(value="/getEsame/{id}", method=RequestMethod.GET)
+	public String getEsame(Model model, @PathVariable("id") Long esameId) {
+		
+		Esame esame = this.esameService.esamePerId(esameId);
+		model.addAttribute("esame", esame);
+		
+		System.out.println(esame.getTipo().getNome() + "\n\n\n\n\n");
+		String[] indicatori, risultati;
+		
+		if(esame.getRisultati()!=null) {
+			indicatori = esame.getTipo().getIndicatori().split(",");
+			risultati = esame.getRisultati().split(",");
+			
+			Map<String, String> risultatiMap = new HashMap<>();
+			
+			for(int i=0; i<indicatori.length; i++) {
+				risultatiMap.put(indicatori[i], risultati[i]);
+			}
+			
+			model.addAttribute("map", risultatiMap);
+			
+			return "esame";
+		}
+		
+		return "risultatiNonDisponibili";
 	}
 	
 	
