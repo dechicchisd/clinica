@@ -5,7 +5,7 @@
 <body>
 	<header th:replace="fragments/base.html :: navbar(page='')"></header>
 	
-	<main>
+	<section class="space-topbot">
 		<div class="form-container">
 			<form th:action="@{/register}" method="POST">
 				<div class="form-line titolo-form" th:text="#{registration.title}">TITOLO</div>
@@ -40,6 +40,6 @@
 				</div>
 			</form>
 		</div>
-	</main>
+	</section>
 </body>
 </html>

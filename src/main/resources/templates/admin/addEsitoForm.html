@@ -2,38 +2,39 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/base.html :: headerfiles(title='SIW')"></head>
 
-<body class="add-form">
+<body>
 	<header th:replace="fragments/base.html :: navbar(page='artisti')"></header>
-	
-	<div class="form-container">
-		
-		<form th:action="@{/addEsito/{id} (id=${esame.id})}" th:object="${esame}" method="POST">
-		
-			<div class="form-line titolo-form" th:text="#{esitoForm.title}">TITOLO</div>
-		
-			<div class="form-line">
-				<label for="id" th:text="#{form.nome}">Paziente: </label>
-				<input id="id" type="text" readonly disabled th:field="*{id}">
-			</div>
+	<section>
+		<div class="form-container">
 			
-			<div class="form-line">
-				<label for="nome" th:text="#{form.nome}">Paziente: </label>
-				<input id="nome" type="text" readonly disabled th:field="*{paziente.nome}">
-			</div>
-			<div class="form-line">
-				<label for="cognome" th:text="#{form.cognome}">Paziente: </label>
-				<input id="cognome" type="text" readonly disabled th:field="*{paziente.cognome}">
-			</div>
+			<form th:action="@{/addEsito/{id} (id=${esame.id})}" th:object="${esame}" method="POST">
 			
-			<div class="form-line">
-				<label for="indicatori" th:text="${indicatori}"></label>
-				<input id="indicatori" type="text" name="risultati">
-			</div>
+				<div class="form-line titolo-form" th:text="#{esitoForm.title}">TITOLO</div>
 			
-			<div class="form-line">
-				<input type="submit" value="Inserisci"></button>
-			</div>
-		</form>
-	</div>
+				<div class="form-line">
+					<label for="id" th:text="#{form.nome}">Paziente: </label>
+					<input id="id" type="text" readonly disabled th:field="*{id}">
+				</div>
+				
+				<div class="form-line">
+					<label for="nome" th:text="#{form.nome}">Paziente: </label>
+					<input id="nome" type="text" readonly disabled th:field="*{paziente.nome}">
+				</div>
+				<div class="form-line">
+					<label for="cognome" th:text="#{form.cognome}">Paziente: </label>
+					<input id="cognome" type="text" readonly disabled th:field="*{paziente.cognome}">
+				</div>
+				
+				<div class="form-line">
+					<label for="indicatori" th:text="${indicatori}"></label>
+					<input id="indicatori" type="text" name="risultati">
+				</div>
+				
+				<div class="form-line">
+					<input type="submit" value="Inserisci"></button>
+				</div>
+			</form>
+		</div>
+	</section>
 </body>
 </html>

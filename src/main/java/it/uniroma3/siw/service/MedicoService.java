@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import it.uniroma3.siw.model.Esame;
 import it.uniroma3.siw.model.Medico;
 import it.uniroma3.siw.repository.MedicoRepository;
 
@@ -36,6 +37,17 @@ public class MedicoService {
 		}
 		
 		return null;
+	}
+
+	@Transactional
+	public Medico medicoPerNomeCognome(String nome, String cognome) {
+
+		return this.medicoRepository.findByNomeAndCognome(nome, cognome).get(0);
+	}
+
+	@Transactional
+	public List<Esame> getEsamiPrenotati(Long id) {
+		return this.medicoRepository.findEsamiByMedicoId(id);
 	}
 
 }

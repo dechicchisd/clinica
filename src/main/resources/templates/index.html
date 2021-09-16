@@ -27,19 +27,22 @@
 				<a th:href="@{/visualizzaTipologie}" th:text="#{home.visualizza.tipi}">VISUALIZZA</a>
 			</div>
 			<div class="button">
-				<a th:href="@{/addTipoForm}" th:text="#{home.aggiungiTipo}">TIPO</a>
+				<a th:href="@{/cercaMedico}" th:text="#{home.filtra.esami}">VISUALIZZA</a>
 			</div>
 			<div class="button">
-				<a th:href="@{/addMedico}" th:text="#{home.aggiungiMedico}">MEDICO</a>
+				<a th:href="@{/addTipoForm}" th:text="#{tipoForm.title}">TIPO</a>
 			</div>
 			<div class="button">
-				<a th:href="@{/cercaEsame}" th:text="#{home.aggiungiEsito}">ESITO</a>
+				<a th:href="@{/addMedico}" th:text="#{medicoForm.title}">MEDICO</a>
 			</div>
 			<div class="button">
-				<a th:href="@{/addPaziente}" th:text="#{home.aggiungiPaziente}">PAZIENTE</a>
+				<a th:href="@{/cercaEsame}" th:text="#{esitoForm.title}">ESITO</a>
 			</div>
 			<div class="button">
-				<a th:href="@{/prenotaEsame}" th:text="#{home.prenotaEsame}">PRENOTA</a>
+				<a th:href="@{/addPaziente}" th:text="#{pazienteForm.title}">PAZIENTE</a>
+			</div>
+			<div class="button">
+				<a th:href="@{/prenotaEsame}" th:text="#{prenotaForm.title}">PRENOTA</a>
 			</div>
 		</div>
 	</div>

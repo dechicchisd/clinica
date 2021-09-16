@@ -2,48 +2,52 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/base.html :: headerfiles(title='SIW')"></head>
 
-<body class="add-form">
+<body>
+	<header th:replace="fragments/base.html :: navbar(page='artisti')"></header>
 	
-	<div class="form-container">
-		<form th:action="@{/prenotaEsame}" method="POST" th:object="${esame}">
-			<div class="form-line titolo-form" th:text="#{esameForm.title}"></div>
-			
-			<div class="form-line">
-				<label for="nome" th:text="#{form.tipo}">Tipo Esame: </label>
-				<select id="nome" name="tipoID">
-					<option value="">-- Selezione tipologia di esame --</option>
-					<option th:each="t : ${tipologie}"
-						    th:value="${t.id}"
-						    th:text="|${t.nome} ${t.prezzo} euro|"></option>
-				</select>
-			</div>
-			
-			<div class="form-line">
-				<label for="medico" th:text="#{form.medico}">Medico: </label>
-				<select id="medico" name="medicoID">
-					<option value="">-- Selezione medico --</option>
-					<option th:each="m : ${medici}"
-						    th:value="${m.id}"
-						    th:text="|${m.nome} ${m.cognome}|"></option>
-				</select>
-			</div>
-
-			<div class="form-line">
-				<label for="codice-paziente" th:text="#{form.paziente.codice}">Codice: </label>
-				<input id="codice-paziente" type="text" name="pazienteID">
-			</div>
+	<section>
 	
-			<div class="form-line">
-				<label for="data" th:text="#{form.data}">Data: </label>
-				<input id="data" type="date" th:field="*{dataEsame}"/>
-			</div>
-			
+		<div class="form-container">
+			<form th:action="@{/prenotaEsame}" method="POST" th:object="${esame}">
+				<div class="form-line titolo-form" th:text="#{prenotaForm.title}"></div>
+				
+				<div class="form-line">
+					<label for="nome" th:text="#{form.tipo}">Tipo Esame: </label>
+					<select id="nome" name="tipoID">
+						<option value="">-- Selezione tipologia di esame --</option>
+						<option th:each="t : ${tipologie}"
+							    th:value="${t.id}"
+							    th:text="|${t.nome} ${t.prezzo} euro|"></option>
+					</select>
+				</div>
+				
+				<div class="form-line">
+					<label for="medico" th:text="#{form.medico}">Medico: </label>
+					<select id="medico" name="medicoID">
+						<option value="">-- Selezione medico --</option>
+						<option th:each="m : ${medici}"
+							    th:value="${m.id}"
+							    th:text="|${m.nome} ${m.cognome}|"></option>
+					</select>
+				</div>
 	
-			<div class="form-line">
-				<input type="submit" value="Prenota"></button>
-			</div>
+				<div class="form-line">
+					<label for="codice-paziente" th:text="#{form.paziente.codice}">Codice: </label>
+					<input id="codice-paziente" type="text" name="pazienteID">
+				</div>
 		
-		</form>
-	</div>
+				<div class="form-line">
+					<label for="data" th:text="#{form.data}">Data: </label>
+					<input id="data" type="date" th:field="*{dataEsame}"/>
+				</div>
+				
+		
+				<div class="form-line">
+					<input type="submit" value="Prenota"></button>
+				</div>
+			
+			</form>
+		</div>
+	</section>
 </body>
 </html>

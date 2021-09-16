@@ -27,7 +27,7 @@ public class TipoController {
 
 	@RequestMapping(value="/addTipo", method=RequestMethod.POST)
 	public String addTipo(Model model, @ModelAttribute("tipo") Tipo tipo, @RequestParam("prezzo") String prezzo) {
-
+		
 		Float prezzo_float = Float.parseFloat(prezzo);
 		tipo.setPrezzo(prezzo_float);
 		
@@ -49,4 +49,45 @@ public class TipoController {
 		model.addAttribute("tipo", this.tipoService.tipoPerId(id));
 		return "tipologiaEsame";
 	}
+	
+	@RequestMapping(value="/deleteTipo/{id}", method=RequestMethod.GET)
+	public String deleteTipoEsame(Model model, @PathVariable("id") Long id) {
+		
+		this.tipoService.deleteTipo(this.tipoService.tipoPerId(id));
+		
+		model.addAttribute("tipologie", this.tipoService.tutti());
+
+		return "tipologie";
+	}
+	
+	@RequestMapping(value="/editTipo/{id}", method=RequestMethod.GET)
+	public String editTipoEsame(Model model, @PathVariable("id") Long id) {
+		
+		model.addAttribute("tipo", this.tipoService.tipoPerId(id));
+		
+		return "/admin/editTipoForm";
+	}
+
+	@RequestMapping(value="/editTipo/{id}", method=RequestMethod.POST)
+	public String editTipoEsame(Model model, 
+								@PathVariable("id") Long id,
+								@RequestParam("prezzo") Float prezzo,
+								@ModelAttribute("tipo") Tipo tipo) {
+		
+		Tipo tipoDB = this.tipoService.tipoPerId(id);
+		
+		tipoDB.setNome(tipo.getNome());
+		tipoDB.setDescrizione(tipo.getDescrizione());
+		tipoDB.setPrezzo(prezzo);
+		tipoDB.setPrerequisiti(tipo.getPrerequisiti());
+		tipoDB.setIndicatori(tipo.getIndicatori());
+		
+		this.tipoService.inserisci(tipoDB);
+		
+		model.addAttribute("tipo", this.tipoService.tipoPerId(id));
+		
+		return "tipologiaEsame";
+	}
+	
+	
 }

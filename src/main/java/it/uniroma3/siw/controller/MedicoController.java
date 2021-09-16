@@ -1,12 +1,16 @@
 package it.uniroma3.siw.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import it.uniroma3.siw.model.Esame;
 import it.uniroma3.siw.model.Medico;
 import it.uniroma3.siw.service.MedicoService;
 
@@ -28,5 +32,22 @@ public class MedicoController {
 
 		medicoService.inserisci(medico);
 		return "index";
+	}
+	
+	@RequestMapping(value="/cercaMedico", method=RequestMethod.GET)
+	public String cercaMedico(Model model) {
+		
+		return "/admin/cercaMedico";
+	}
+	
+	@RequestMapping(value="/esamiPerMedico", method=RequestMethod.GET)
+	public String cercaMedico(Model model, @RequestParam("nome") String nome, @RequestParam("cognome") String cognome) {
+		
+		Medico medico = this.medicoService.medicoPerNomeCognome(nome, cognome);
+		
+		List<Esame> esami = this.medicoService.getEsamiPrenotati(medico.getId());
+		model.addAttribute("esami", esami);
+		
+		return "esamiPrenotati";
 	}
 }

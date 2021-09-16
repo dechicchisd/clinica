@@ -7,11 +7,15 @@
 	
 	<section>
 	<div class="form-container">
-		<form th:action="@{/addEsito}">
-			<div class="form-line titolo-form" th:text="#{cercaEsame.title}">CERCA ESAME</div>
+		<form th:action="@{/esamiPerMedico}">
+			<div class="form-line titolo-form" th:text="#{cercaMedico.title}">CERCA MEDICO</div>
 			<div class="form-line">
-				<label for="nome" th:text="#{form.esame.codice}">Codice esame: </label>
-				<input id="nome" type="text" name="esameID">
+				<label for="nome" th:text="#{form.nome}">NOME </label>
+				<input id="nome" type="text" name="nome">
+			</div>	
+			<div class="form-line">
+				<label for="cognome" th:text="#{form.cognome}">COGNOME </label>
+				<input id="cognome" type="text" name="cognome">
 			</div>	
 			<div class="form-line">
 				<input type="submit" value="Cerca"></button>

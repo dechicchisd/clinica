@@ -9,6 +9,10 @@
 			<span id="nome-tipo" th:text="*{tipo.nome}"></span>
 			<table>			
 				<tr>
+					<td>Paziente</td>
+					<td th:text="|*{paziente.nome} *{paziente.cognome}|"></td>
+				</tr>
+				<tr>
 					<td>Descrizione</td>
 					<td th:text="*{tipo.descrizione}"></td>
 				</tr>

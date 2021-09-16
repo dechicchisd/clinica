@@ -116,15 +116,16 @@ public class EsameController {
 	}
 
 	@RequestMapping(value="/getEsame/{id}", method=RequestMethod.GET)
-	public String getEsame(Model model, @PathVariable("id") Long esameId) {
+	public String getEsame(Model model, @PathVariable("id") Long esameId, HttpSession session) {
 		
 		Esame esame = this.esameService.esamePerId(esameId);
-		model.addAttribute("esame", esame);
-		
-		System.out.println(esame.getTipo().getNome() + "\n\n\n\n\n");
+		Long idPaziente = esame.getPaziente().getUtente().getId();
+		Credentials credentials = (Credentials) session.getAttribute("credentials");
+		Long idUtenteConnesso = credentials.getUser().getId();
+		String ruoloUtenteConnesso = credentials.getRuolo();
 		String[] indicatori, risultati;
 		
-		if(esame.getRisultati()!=null) {
+		if(esame.getRisultati()!=null && (idUtenteConnesso == idPaziente || ruoloUtenteConnesso.equals(Credentials.ADMIN_ROLE))) {
 			indicatori = esame.getTipo().getIndicatori().split(",");
 			risultati = esame.getRisultati().split(",");
 			
@@ -134,6 +135,7 @@ public class EsameController {
 				risultatiMap.put(indicatori[i], risultati[i]);
 			}
 			
+			model.addAttribute("esame", esame);
 			model.addAttribute("map", risultatiMap);
 			
 			return "esame";
