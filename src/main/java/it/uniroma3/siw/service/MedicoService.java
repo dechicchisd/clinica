@@ -50,4 +50,8 @@ public class MedicoService {
 		return this.medicoRepository.findEsamiByMedicoId(id);
 	}
 
+	public void delete(Medico medico) {
+		this.medicoRepository.delete(medico);
+	}
+
 }

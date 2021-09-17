@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='SIW')"></head>
+
+<body class="add-form">
+	<header th:replace="fragments/base.html :: navbar(page='artisti')"></header>
+	
+	<section>
+	<div class="form-container">
+		<form th:action="@{/deleteMedico}">
+			<div class="form-line titolo-form" th:text="#{eliminaMedico.title}">ELIMINA MEDICO</div>
+			<div class="form-line">
+				<label for="id" th:text="#{form.codice}">Codice medico: </label>
+				<input id="id" type="text" name="medicoID">
+			</div>	
+			<div class="form-line">
+				<label for="nome" th:text="#{form.nome}">Nome: </label>
+				<input id="nome" type="text" name="nome">
+			</div>	
+			<div class="form-line">
+				<label for="cognome" th:text="#{form.cognome}">Cognome: </label>
+				<input id="cognome" type="text" name="cognome">
+			</div>	
+			<div class="form-line">
+				<input type="submit" value="Elimina"></button>
+			</div>
+		</form>
+	</div>
+	</section>
+</body>
+</html>

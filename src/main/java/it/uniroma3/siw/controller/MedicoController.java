@@ -34,6 +34,28 @@ public class MedicoController {
 		return "index";
 	}
 	
+	@RequestMapping(value="/deleteMedico", method=RequestMethod.GET)
+	public String deleteMedico(Model model,
+							   @RequestParam("medicoID") Long id,
+							   @RequestParam("nome") String nome,
+							   @RequestParam("cognome") String cognome) {
+		
+		Medico medicoByNC = this.medicoService.medicoPerNomeCognome(nome, cognome);
+		Medico medicoById = this.medicoService.medicoPerId(id);
+		
+		if(medicoById.equals(medicoByNC)) {
+			this.medicoService.delete(medicoById);
+		}
+		
+		return "index";
+	}
+	@RequestMapping(value="/deleteMedicoForm", method=RequestMethod.GET)
+	public String deleteMedico(Model model) {
+		
+		
+		return "/admin/deleteMedico";
+	}
+	
 	@RequestMapping(value="/cercaMedico", method=RequestMethod.GET)
 	public String cercaMedico(Model model) {
 		

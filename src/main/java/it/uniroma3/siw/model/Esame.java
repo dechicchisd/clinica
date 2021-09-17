@@ -3,11 +3,13 @@ package it.uniroma3.siw.model;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -33,7 +35,7 @@ public class Esame {
 	@ManyToOne
 	private Paziente paziente;
 	
-	@OneToOne
+	@ManyToOne
 	private Medico medico;
 	
 	private String risultati;
