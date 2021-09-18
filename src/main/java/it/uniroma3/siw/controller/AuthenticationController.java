@@ -76,14 +76,14 @@ public class AuthenticationController {
                  BindingResult userBindingResult,
                  @ModelAttribute("credentials") Credentials credentials,
                  BindingResult credentialsBindingResult,
-                 @RequestParam("pazienteID") Long pazienteId,
+                 @RequestParam(value="pazienteID", required=false) Long pazienteId,
                  Model model) {
 
     	Paziente paziente = this.pazienteService.pazientePerId(pazienteId);
-    	paziente.setUtente(user);
-    	if(pazienteId!=null) {
-    		System.out.println(paziente.getNome() + "\n\n\n\n\n");
+    	
+    	if(paziente!=null) {
     		user.setPaziente(paziente);
+    		paziente.setUtente(user);
     	}
     	// validate user and credentials fields
         this.userValidator.validate(user, userBindingResult);
@@ -95,9 +95,12 @@ public class AuthenticationController {
             // this also stores the User, thanks to Cascade.ALL policy
             credentials.setUser(user);
             
-            pazienteService.inserisci(paziente);
+            if(paziente!=null)
+            	pazienteService.inserisci(paziente);
+            
             userService.saveUser(user);
             credentialsService.saveCredentials(credentials);
+            
             return "loginForm";
         }
         return "registerForm";

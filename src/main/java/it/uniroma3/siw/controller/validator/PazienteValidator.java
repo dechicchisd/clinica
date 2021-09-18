@@ -8,14 +8,15 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import it.uniroma3.siw.model.Tipo;
-import it.uniroma3.siw.service.TipoService;
+import it.uniroma3.siw.model.Medico;
+import it.uniroma3.siw.model.Paziente;
+import it.uniroma3.siw.service.PazienteService;
 
 @Component
-public class TipoValidator implements Validator{
+public class PazienteValidator implements Validator{
 
 	@Autowired
-	private TipoService tipoService;
+	private PazienteService pazienteService;
 
     private static final Logger logger = LoggerFactory.getLogger(TipoValidator.class);
 
@@ -23,13 +24,11 @@ public class TipoValidator implements Validator{
 	@Override
     public void validate(Object o, Errors errors) {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nome", "required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "descrizione", "required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "prezzo", "required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "indicatori", "required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cognome", "required");
 
 		if (!errors.hasErrors()) {
 			logger.debug("confermato: valori non nulli");
-			if (this.tipoService.alreadyExists((Tipo)o)) {
+			if(this.pazienteService.alreadyExist((Paziente) o)) {
 				logger.debug("e' un duplicato");
 				errors.reject("duplicato");
 			}
@@ -38,6 +37,6 @@ public class TipoValidator implements Validator{
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return Tipo.class.equals(clazz);
+        return Medico.class.equals(clazz);
     }
 }

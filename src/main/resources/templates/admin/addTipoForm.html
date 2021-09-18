@@ -8,25 +8,37 @@
 	<section class="space-topbot">
 		<div class="form-container">
 			<form th:action="@{/addTipo}" th:object="${tipo}" method="POST">
+				
+				<div th:if="${#fields.hasGlobalErrors()}">
+  					<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+				</div>	
+				
 				<div class="form-line titolo-form" th:text="#{tipoForm.title}">TITOLO</div>
+				
 				<div class="form-line">
 					<label for="nome" th:text="#{form.tipo}">Tipo Esame: </label>
 					<input id="nome" type="text" th:field="*{nome}">
-					
+					<p th:if="${#fields.hasErrors('nome')}"
+	                 th:errors="${nome}" th:style="'color:red'"></p>
 				</div>
+
 				<div class="form-line">
 					<label for="descrizione" th:text="#{form.descrizione}">Descrizione: </label>
 					<textarea id="descrizione" type="text" rows="5" th:field="*{descrizione}"></textarea>
-					
+					<p th:if="${#fields.hasErrors('descrizione')}"
+	                 th:errors="${descrizione}" th:style="'color:red'"></p>
 				</div>
+
 				<div class="form-line">
 					<label for="prezzo" th:text="#{form.costo}">Prezzo: </label>
-					<input id="prezzo" type="text" name="prezzo">
-					
+					<input id="prezzo" type="text" name="prezzo">					
 				</div>
+	
 				<div class="form-line">
 					<label for="indicatori" th:text="#{form.indicatori}">Indicatori: </label>
 					<input id="indicatori" type="text" th:field="*{indicatori}">
+					<p th:if="${#fields.hasErrors('indicatori')}"
+	                 th:errors="${indicatori}" th:style="'color:red'"></p>
 				</div>
 		
 				<div class="form-line">
@@ -37,6 +49,7 @@
 				<div class="form-line">
 					<input type="submit" value="Inserisci"></button>
 				</div>
+	
 			</form>
 		</div>
 	</section>

@@ -52,25 +52,33 @@ public class EsameController {
 	@RequestMapping(value="/prenotaEsame", method=RequestMethod.POST)
 	public String prenotaEsame(Model model, 
 							   @ModelAttribute("esame") Esame esame,
-							   @RequestParam("tipoID") Long idTipo,
-							   @RequestParam("medicoID") Long idMedico,
-							   @RequestParam("pazienteID") Long idPaziente) {
+							   @RequestParam("tipoID") String idTipo,
+							   @RequestParam("medicoID") String idMedico,
+							   @RequestParam("pazienteID") String idPaziente) {
+	
+		if(!idTipo.equals("") && !idMedico.equals("") && !idPaziente.equals("") && esame.getDataEsame()!=null) {
+			Tipo tipo = tipoService.tipoPerId(Long.parseLong(idTipo));
+			esame.setTipo(tipo);
+			
+			Medico medico = medicoService.medicoPerId(Long.parseLong(idMedico));
+			esame.setMedico(medico);
+			
+			Paziente paziente = pazienteService.pazientePerId(Long.parseLong(idPaziente));
+			esame.setPaziente(paziente);
+			
+			LocalDateTime now = LocalDateTime.now();  
+			esame.setDataPrenotazione(now);
+			
+			esameService.inserisci(esame);
+
+			return "index";
+		}
 		
-		Tipo tipo = tipoService.tipoPerId(idTipo);
-		esame.setTipo(tipo);
+		model.addAttribute("esame", new Esame());
+		model.addAttribute("tipologie", this.tipoService.tutti());
+		model.addAttribute("medici", this.medicoService.tutti());
 		
-		Medico medico = medicoService.medicoPerId(idMedico);
-		esame.setMedico(medico);
-		
-		Paziente paziente = pazienteService.pazientePerId(idPaziente);
-		esame.setPaziente(paziente);
-		
-		LocalDateTime now = LocalDateTime.now();  
-		esame.setDataPrenotazione(now);
-		
-		esameService.inserisci(esame);
-		
-		return "index";
+		return "/admin/prenotaEsameForm";
 	}
 	
 	@RequestMapping(value="/cercaEsame", method=RequestMethod.GET)
@@ -80,14 +88,19 @@ public class EsameController {
 	}
 	
 	@RequestMapping(value="/addEsito", method=RequestMethod.GET)
-	public String aggiungiEsito(Model model, @RequestParam("esameID") Long esameId) {
-		Esame esame = this.esameService.esamePerId(esameId);
-		model.addAttribute("esame", esame);
+	public String aggiungiEsito(Model model, @RequestParam("esameID") String esameId) {
 		
-		String indicatori = esame.getTipo().getIndicatori();
-		model.addAttribute("indicatori", indicatori);
+			if(!esameId.equals("")) {
+			Esame esame = this.esameService.esamePerId(Long.parseLong(esameId));
+			model.addAttribute("esame", esame);
+			
+			String indicatori = esame.getTipo().getIndicatori();
+			model.addAttribute("indicatori", indicatori);
+			
+			return "/admin/addEsitoForm";
+		}
 		
-		return "/admin/addEsitoForm";
+		return "/admin/cercaEsame";
 	}
 
 	@RequestMapping(value="/addEsito/{id}", method=RequestMethod.POST)
@@ -96,10 +109,23 @@ public class EsameController {
 									@PathVariable("id") Long idEsame) {
 		
 		Esame esame = this.esameService.esamePerId(idEsame);
-		esame.setRisultati(risultati);
-		this.esameService.inserisci(esame);
+
+		if(!risultati.equals("")) {
+			int risultatiLen = risultati.split(",").length;
+			int indicatoriLen = esame.getTipo().getIndicatori().split(",").length;
+			
+			if(risultatiLen == indicatoriLen) {
+				esame.setRisultati(risultati);
+				this.esameService.inserisci(esame);
+				return "index";
+			}
+						
+		}
 		
-		return "index";
+		model.addAttribute("esame", esame);
+		model.addAttribute("indicatori", esame.getTipo().getIndicatori());
+		
+		return "/admin/addEsitoForm";
 	}
 	
 	@RequestMapping(value="/visualizzaEsamiPrenotati", method=RequestMethod.GET)
@@ -124,24 +150,26 @@ public class EsameController {
 		Long idUtenteConnesso = credentials.getUser().getId();
 		String ruoloUtenteConnesso = credentials.getRuolo();
 		String[] indicatori, risultati;
-		
+			
 		if(esame.getRisultati()!=null && (idUtenteConnesso == idPaziente || ruoloUtenteConnesso.equals(Credentials.ADMIN_ROLE))) {
 			indicatori = esame.getTipo().getIndicatori().split(",");
 			risultati = esame.getRisultati().split(",");
-			
+				
 			Map<String, String> risultatiMap = new HashMap<>();
-			
+				
 			for(int i=0; i<indicatori.length; i++) {
 				risultatiMap.put(indicatori[i], risultati[i]);
 			}
-			
+				
 			model.addAttribute("esame", esame);
 			model.addAttribute("map", risultatiMap);
-			
+				
 			return "esame";
 		}
-		
+			
+		model.addAttribute("frase", "I risultati dell'esame non sono disponibili.");
 		return "risultatiNonDisponibili";
+		
 	}
 	
 	

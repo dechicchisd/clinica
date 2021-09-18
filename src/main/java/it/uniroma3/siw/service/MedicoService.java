@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import it.uniroma3.siw.model.Esame;
 import it.uniroma3.siw.model.Medico;
+import it.uniroma3.siw.model.Tipo;
 import it.uniroma3.siw.repository.MedicoRepository;
 
 @Service
@@ -52,6 +53,16 @@ public class MedicoService {
 
 	public void delete(Medico medico) {
 		this.medicoRepository.delete(medico);
+	}
+
+	public boolean alreadyExist(Medico medico) {
+		List<Medico> medici = this.medicoRepository.findByNomeAndCognome(medico.getNome(), medico.getCognome());
+		
+		if (medici.size() > 0)
+			return true;
+		else 
+			return false;
+	
 	}
 
 }

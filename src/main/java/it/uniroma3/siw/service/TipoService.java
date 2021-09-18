@@ -40,8 +40,8 @@ public class TipoService {
 	
 	@Transactional
 	public boolean alreadyExists(Tipo tipo) {
-		List<Tipo> attori = this.tipoRepository.findByNome(tipo.getNome());
-		if (attori.size() > 0)
+		List<Tipo> tipi = this.tipoRepository.findByNome(tipo.getNome());
+		if (tipi.size() > 0)
 			return true;
 		else 
 			return false;

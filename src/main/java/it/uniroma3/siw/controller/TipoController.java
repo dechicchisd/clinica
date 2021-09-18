@@ -3,12 +3,14 @@ package it.uniroma3.siw.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import it.uniroma3.siw.controller.validator.TipoValidator;
 import it.uniroma3.siw.model.Tipo;
 import it.uniroma3.siw.service.TipoService;
 
@@ -17,6 +19,9 @@ public class TipoController {
 
 	@Autowired
 	private TipoService tipoService;
+	
+	@Autowired
+	private TipoValidator tipoValidator;
 
 	@RequestMapping(value="/addTipoForm", method=RequestMethod.GET)
 	public String getAddTipoForm(Model model) {
@@ -26,14 +31,27 @@ public class TipoController {
 	}
 
 	@RequestMapping(value="/addTipo", method=RequestMethod.POST)
-	public String addTipo(Model model, @ModelAttribute("tipo") Tipo tipo, @RequestParam("prezzo") String prezzo) {
+	public String addTipo(Model model, 
+						  @ModelAttribute("tipo") Tipo tipo,
+						  BindingResult bindingResult,
+			              @RequestParam("prezzo") String prezzo) {
 		
-		Float prezzo_float = Float.parseFloat(prezzo);
-		tipo.setPrezzo(prezzo_float);
+		if(!prezzo.equals("")) {
+			Float prezzo_float = Float.parseFloat(prezzo);
+			tipo.setPrezzo(prezzo_float);
+		}
 		
-		tipoService.inserisci(tipo);
+		this.tipoValidator.validate(tipo, bindingResult);
 		
-		return "index";
+		if(!bindingResult.hasErrors()) {
+			tipoService.inserisci(tipo);
+		
+			return "index";
+		}
+
+		model.addAttribute("tipo", new Tipo());
+
+		return "/admin/addTipoForm";
 	}
 	
 	@RequestMapping(value="/visualizzaTipologie", method=RequestMethod.GET)

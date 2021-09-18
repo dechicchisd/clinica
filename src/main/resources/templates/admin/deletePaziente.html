@@ -7,11 +7,11 @@
 	
 	<section>
 	<div class="form-container">
-		<form th:action="@{/deleteMedico}">
-			<div class="form-line titolo-form" th:text="#{eliminaMedico.title}">ELIMINA MEDICO</div>
+		<form th:action="@{/deletePaziente}">
+			<div class="form-line titolo-form" th:text="#{eliminaPaziente.title}">ELIMINA PAZIENTE</div>
 			<div class="form-line">
-				<label for="id" th:text="#{form.medico.codice}">Codice medico: </label>
-				<input id="id" type="text" name="medicoID">
+				<label for="id" th:text="#{form.paziente.codice}">Codice paziente: </label>
+				<input id="id" type="text" name="pazienteID">
 			</div>	
 			<div class="form-line">
 				<label for="nome" th:text="#{form.nome}">Nome: </label>

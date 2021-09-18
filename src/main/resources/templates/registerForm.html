@@ -13,11 +13,15 @@
 				<div class="form-line">
 					<label for="nome" th:text="#{form.nome}">Nome: </label>
 					<input id="nome" type="text" th:field="${user.nome}">
+					<p th:if="${#fields.hasErrors('user.nome')}"
+	                 th:errors="${user.nome}" th:style="'color:red'"></p>
 				</div>
 		
 				<div class="form-line">
 					<label for="cognome" th:text="#{form.cognome}">Cognome: </label>
 					<input id="cognome" type="text" th:field="${user.cognome}">
+					<ptd th:if="${#fields.hasErrors('user.cognome')}"
+	                 th:errors="${user.cognome}" th:style="'color:red'"></p>
 				</div>
 				
 				<div class="form-line">
@@ -27,12 +31,16 @@
 				
 				<div class="form-line">
 					<label for="username" th:text="#{form.username}">Username: </label>
-					<input id="username" type="text" th:field=*{credentials.username}>	
+					<input id="username" type="text" th:field=*{credentials.username}>
+					<p th:if="${#fields.hasErrors('credentials.username')}"
+ 	                 th:errors="${credentials.username}" th:style="'color:red'"></p>
 				</div>
 				
 				<div class="form-line">
 					<label for="password" th:text="#{form.password}">Password: </label>
-					<input id="password" type="password" th:field=${credentials.password}>	
+					<input id="password" type="password" th:field=${credentials.password}>
+					<p th:if="${#fields.hasErrors('credentials.password')}"
+	                 th:errors="${credentials.password}" th:style="'color:red'"></p>
 				</div>
 				
 				<div class="form-line">
