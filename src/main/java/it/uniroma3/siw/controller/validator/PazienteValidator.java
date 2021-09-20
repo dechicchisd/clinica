@@ -37,6 +37,6 @@ public class PazienteValidator implements Validator{
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return Medico.class.equals(clazz);
+        return Paziente.class.equals(clazz);
     }
 }
