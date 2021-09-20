@@ -1,0 +1,86 @@
+Clinica
+
+Caso d'uso UC1: Consulta offerta
+-Attore primario: utente non registrato
+-Scenario principale di successo:
+	-L'utente consulta l'elenco delle tipologie di esame
+	-L'utente sceglie una tipologia di esame e ne richiede i dettagli
+	-Il sistema mostra i dettagli della tipologia di esame scelta dall'utente
+
+Caso d'uso UC2: Crea esame
+-Attore primario: amministratore
+-Scenario principale di successo:
+	-L'amministratore crea un esame
+	-L'amministratore imposta una tipologia di esame, e associa un paziente all'esame creato
+	-Il sistema registra l'esame impostando automaticamente la data di prenotazione
+-Precondizioni: l'amministratore è identificato e autenticato
+
+Caso d'uso UC3: Consulta i risultati di un proprio esame
+-Attore primario: paziente
+-Scenario principale di successo:
+	-L'utente consulta l'elenco delle tipologie di esame
+	-L'utente sceglie una tipologia di esame e ne richiede i dettagli
+	-Il sistema mostra i dettagli della tipologia di esame scelta dall'utente
+-Precondizioni: il paziente è identificato e autenticato
+
+Caso d'uso UC4: Inserimento di una tipologia di esame
+-Attore primario: amministratore
+-Scenario principale di successo:
+	-L'amministratore inserisce una nuova tipologia di esame specificandone i dettagli
+	-Il sistema registra la tipologia di esame
+-Precondizioni: l'amministratore è identificato e autenticato
+
+Caso d'uso UC5: Esami effettuati da un medico
+-Attore primario: amministratore
+-Scenario principale di successo:
+	-L'amministratore fornisce nome e cognome di un medico
+	-Il sistema mostra tutti gli esami effettuati da quel medico
+-Precondizioni: l'amministratore è identificato e autenticato
+
+Caso d'uso UC6: Inserimento risultati esame
+-Attore primario: amministratore
+-Scenario principale di successo:
+	-L'amministratore un codice esame
+	-Il sistema presenta all'aministratore l'esame relativo al codice immesso
+	-L'amministratore inserisce tutti i risultati dell'esame
+-Precondizioni: l'amministratore è identificato e autenticato
+
+Caso d'uso UC7: Inserimento nuovo medico
+-Attore primario: amministratore
+-Scenario principale di successo:
+	-L'amministratore inserisce nome, cognome e specializzazione
+	-Il sistema registra il nuovo medico
+-Precondizioni: l'amministratore è identificato e autenticato
+
+Caso d'uso UC7: Elimina medico
+-Attore primario: amministratore
+-Scenario principale di successo:
+	-L'amministratore inserisce codice, nome e cognome relativi al medico da eliminare
+	-Se i dati corrispondono il sistema elimina il medico
+-Precondizioni: l'amministratore è identificato e autenticato
+
+Caso d'uso UC7: Inserimento nuovo paziente
+-Attore primario: amministratore
+-Scenario principale di successo:
+	-L'amministratore inserisce nome e cognome del paziente 
+	-Il sistema registra il nuovo paziente
+-Precondizioni: l'amministratore è identificato e autenticato
+
+Caso d'uso UC7: Elimina paziente
+-Attore primario: amministratore
+-Scenario principale di successo:
+	-L'amministratore inserisce codice, nome e cognome relativi al paziente da eliminare
+	-Se i dati corrispondono il sistema elimina il paziente
+-Precondizioni: l'amministratore è identificato e autenticato
+
+Caso d'uso UC8: Registrazione
+-Attore primario: utente non registrato
+-Scenario principale di successo:
+	-L'utente inserisce nome, cognome, username, password, ed eventualmente (se è un paziente) il codice paziente
+	-Il sistema registra il nuovo utente
+-Precondizioni: l'amministratore è identificato e autenticato
+
+
+
+
+
