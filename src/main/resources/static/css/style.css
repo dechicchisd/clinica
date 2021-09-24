@@ -30,7 +30,8 @@ a{
 }
 
 body{
-	background-color: #78d9ff;
+	background: url(../img/back.jpg) repeat 100%;
+	/*background-color: #78d9ff;*/
 	min-height: 100vh;
 }
 
@@ -87,7 +88,7 @@ input[type=submit]:hover {
 
 .form-container{
     border-radius: 3px;
-  	background-color: #f2f2f2;
+  	background-color: rgba(242, 242, 242, 0.7);
 }
 
 #home{
