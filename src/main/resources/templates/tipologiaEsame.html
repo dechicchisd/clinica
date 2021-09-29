@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/base.html :: headerfiles(title='SIW')"></head>
 
-<body>
+<body id="tipo-esame">
 	<header th:replace="fragments/base.html :: navbar(page='artisti')"></header>
 	
 	<div class="center-container" th:object="${tipo}" sec:authorize="isAuthenticated() and hasAuthority('ADMIN')">
@@ -15,7 +15,7 @@
 				</tr>
 				<tr>
 					<td>Prezzo</td>
-					<td th:text="|*{prezzo} euro|"></td>
+					<td th:text="|${prezzo} euro|"></td>
 				</tr>
 				<tr>
 					<td>Indicatori</td>
@@ -47,7 +47,7 @@
 				</tr>
 				<tr>
 					<td>Prezzo</td>
-					<td th:text="|*{prezzo} euro|"></td>
+					<td th:text="|${prezzo} euro|"></td>
 				</tr>
 				<tr>
 					<td>Indicatori</td>

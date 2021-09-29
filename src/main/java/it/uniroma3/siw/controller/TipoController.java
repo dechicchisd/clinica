@@ -1,5 +1,7 @@
 package it.uniroma3.siw.controller;
 
+import java.util.Formatter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import Utils.SiwUtils;
 import it.uniroma3.siw.controller.validator.TipoValidator;
 import it.uniroma3.siw.model.Tipo;
 import it.uniroma3.siw.service.TipoService;
@@ -63,8 +66,11 @@ public class TipoController {
 	
 	@RequestMapping(value="/getTipoEsame/{id}", method=RequestMethod.GET)
 	public String getTipoEsame(Model model, @PathVariable("id") Long id) {
-		
-		model.addAttribute("tipo", this.tipoService.tipoPerId(id));
+		Formatter formatter = new Formatter();
+		Tipo tipo = this.tipoService.tipoPerId(id);
+		model.addAttribute("tipo", tipo);
+		model.addAttribute("prezzo", formatter.format("%.2f", tipo.getPrezzo()).toString());
+		formatter.close();
 		return "tipologiaEsame";
 	}
 	
@@ -89,20 +95,46 @@ public class TipoController {
 	@RequestMapping(value="/editTipo/{id}", method=RequestMethod.POST)
 	public String editTipoEsame(Model model, 
 								@PathVariable("id") Long id,
-								@RequestParam("prezzo") Float prezzo,
+								@RequestParam("prezzo") String prezzo,
 								@ModelAttribute("tipo") Tipo tipo) {
 		
 		Tipo tipoDB = this.tipoService.tipoPerId(id);
 		
-		tipoDB.setNome(tipo.getNome());
-		tipoDB.setDescrizione(tipo.getDescrizione());
-		tipoDB.setPrezzo(prezzo);
-		tipoDB.setPrerequisiti(tipo.getPrerequisiti());
-		tipoDB.setIndicatori(tipo.getIndicatori());
+		Float prezzoNew = tipo.getPrezzo();
+		String nome = tipo.getNome();
+		String desc = tipo.getDescrizione();
+		String pre = tipo.getPrerequisiti();
+		String ind = tipo.getIndicatori();
 		
-		this.tipoService.inserisci(tipoDB);
 		
-		model.addAttribute("tipo", this.tipoService.tipoPerId(id));
+		System.out.println(nome + "\n" + desc + "\n" + prezzo + "\n" + ind + "\n");
+		if(!nome.equals("") && !desc.equals("") && !ind.equals("") && !prezzo.equals("")) {
+			tipoDB.setNome(nome);
+			tipoDB.setDescrizione(desc);
+			tipoDB.setPrerequisiti(pre);
+			tipoDB.setIndicatori(ind);
+			
+			prezzoNew = Float.parseFloat(prezzo);
+			tipoDB.setPrezzo(prezzoNew);
+			
+			this.tipoService.inserisci(tipoDB);
+			
+			Formatter formatter = new Formatter();
+
+			model.addAttribute("prezzo", formatter.format("%.2f", prezzoNew).toString());
+			model.addAttribute("tipo", this.tipoService.tipoPerId(id));
+			
+			formatter.close();
+			
+			return "tipologiaEsame";
+		}
+		
+		Formatter formatter = new Formatter();
+		
+		model.addAttribute("prezzo", formatter.format("%.2f", tipoDB.getPrezzo()).toString());
+		model.addAttribute("tipo", tipoDB);
+		
+		formatter.close();
 		
 		return "tipologiaEsame";
 	}
